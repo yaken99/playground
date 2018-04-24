@@ -1,0 +1,54 @@
+*Github使い方*
+・リモートリポジトリという大元のリポジトリ(オンライン上とかにある)とローカルリポジトリという自分のPCで作業する用のリポジトリが存在
+・作業は自分のPCで行い、かけたコードをリモートリポジトリにuploadするgithubの簡単なチュートリアルなどはhttps://techacademy.jp/magazine/6235(今さら聞けない！GitHubの使い方【超初心者向け】
+)を参照
+
+*バージョン管理ツール*
+・GitHub: ねこのやつ、よくみなさんが使ってるやつ
+・SourceTree: ブランチとかが可視化されて見える(図とかで見た方がわかりやすい人向け)
+・Bitbucket: 非公開リポジトリが作れるGitHub
+
+*注意点*
+・圧縮ファイルやコンパイル済みファイル、データベースのバックアップなどサイズの大きいファイルは置かない方が良い
+
+*専門用語*
+commit: ファイルの追加や変更の履歴をローカルリポジトリに保存する操作
+push: ファイルの追加や変更の履歴をリモートリポジトリにアップロードするための操作
+ステージ: 編集しているファイルがコミットしてあってプッシュできる状態
+fetch: リモートリポジトリの最新情報をローカルリポジトリに持ってくる操作
+merge: 2つのブランチを合流
+pull: リモートリポジトリの情報をローカルリポジトリに持ってきてローカルリポジトリを更新(pull = fetch + merge)
+fetchとmergeが使えるなら使わんでも良いかも
+branch: 新しい機能追加やメンテのためなど分岐する作業する時の機能
+branch(master): gitリポジトリに最初にコミットすると作成される
+branch(追跡): ローカルブランチの一種でリモートブランチの状態を監視
+origin: リポジトリの場所(url)の別名
+master: ブランチの名前
+origin/master: ローカルリポジトリに存在する。ローカルリポジトリにはmaster,origin/masterという2つのブランチが実は存在している(いつも見えるのはmasterの方)
+
+*コマンド*
+*基本操作系*
+git init: 自分のPC内のディレクトリをローカルリポジトリに設定するための最初の操作;任意のディレクトリに移動しこのコマンドを打つことでそのディレクトリをローカルリポジトリへと設定可能
+rm -rf .git: git initでローカルリポジトリに指定したディレクトリに対して指定を解除
+git add file-name: file-nameというファイルをコミットするファイルにする
+git commit -m "comment": メッセージ付きでコミットを行う(-m "comment"の部分;一応メッセージはつけると良い)
+git remote add origin https://~: リモートリポジトリの情報の追加(httpのところはgithubで作ったリポジトリの方で見れるurl)
+git push origin master: "master"ブランチのコミット内容をgithubに送る
+git fetch: ローカルリポジトリのorigin/masterブランチが最新となる
+git merge: 現在のブランチに対して他のブランチで行なった変更を取り込むために使う
+git merge origin/master: ローカルのファイルが最新となる
+git clone http://~: urlのところをリモートリポジトリとしてcloneすることでローカルリポジトリに内容を持っきて開発ができるようにする
+git branch branch_name: branch_nameというブランチを作成
+git checkout branch_name: branch_nameに移動可能
+git checkout -b branch_name: ブランチの作成と移動が一括でできる
+
+*状況確認系*
+git status: ローカルリポジトリに対して現在のブランチの名称や追加、変更されたファイルやディレクトリの一覧が確認可能
+git config --list: originがどこを指してるのかわかる(パスが出力される)
+git branch: 現在のブランチ一覧の確認(-aで他の人のも確認)
+git log: ローカルリポジトリのコミット履歴を確認(-n 10 などで見れる履歴の数を指定可能)
+git grep "検索したい単語": 特定の語句が含まれているファイルを検索し、そのファイルのどこに語句が含まれているか調べることが可能
+git remote: リモートリポジトリの一覧を表示(-vでリモートリポジトリの場所が出る) 
+
+*エラー*
+fatal: refusing to merge unrelated histories: 1.mergeする 2.mergeできないときは"git merge --allow-unrelated-histories origin/master"と入力
