@@ -1,3 +1,3 @@
 # playground
-practice 
-aaa
+個人で遊んでいるだけです。
+練習用となっています。
