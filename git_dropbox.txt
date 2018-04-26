@@ -1,0 +1,22 @@
+*Dropboxと同期する場合*
+Dropboxにgitを導入することで非公開リポジトリを作成、他者と共有することができる
+
+*手順*
+・Dropbox上にリポジトリを作成(リモートリポジトリ)
+$mkdir ~/Dropbox/playground/repositry_name
+$cd ~/Dropbox/repositry_name
+$git init --bare --shared=true
+
+・ローカルリポジトリの作成
+$cd ~/local_repositry
+$git init
+ここでlocal_repositoryディレクトリ内に適当なファイルを作成
+$git add .
+$git commit -m "first commit"
+
+$git remote add dropbox ~/Dropbox/playground/repository_name
+$git push dropbox master (dropbox masterなしでもpushできるはず)
+
+*もしすでにDropbox内にプロジェクトがある場合
+$git clone -o dropbox ~/Dropbox/playground/repository_name
+でとってくることが可能(-oでoriginでなくdropboxという方に持ってこれる)
